@@ -69,16 +69,13 @@ public class ThirdPersonMovement : MonoBehaviour
 
     void Update()
     {
-        if (toJump)
-        {
-            jump();
-            toJump = false;
-        }
+        if (toJump) jump();
+        toJump = false;
 
         move();
 
         applyGravity();
-        setAnimation();
+        setAnimation(); 
     }
 
     // Applies horizontal movement.
@@ -136,7 +133,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     // Return if character is falling.
     bool isFalling() {
-        return (isGrounded() && velocity.y < neutralVerticalVelocity);
+        return (!isGrounded() && velocity.y < neutralVerticalVelocity);
     }
 
     // Return if the character is jumping
@@ -148,6 +145,10 @@ public class ThirdPersonMovement : MonoBehaviour
     void setAnimation()
     {
         animator.SetBool("walking", isMoving());
-        animator.SetBool("running", running);
+
+        animator.SetBool("running", (isMoving() && running));
+
+        if (toJump)
+            animator.SetTrigger("jump");
     }
 }

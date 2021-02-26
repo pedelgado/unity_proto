@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Camera",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "443c7e8a-c457-4a8c-83cd-404441d109f2",
                     "expectedControlType": "",
                     "processors": "",
